@@ -1,0 +1,40 @@
+# Have total months done
+
+# Modules
+import os
+import csv
+
+# Prompt user for video lookup
+#video = input("What month are you looking for? ")
+
+# Set path for file
+csvpath = os.path.join("..", "Resources", "budget_data.csv")
+
+# Title
+print ("Financial Analysis")
+print ("-----------------------------")
+
+# Open the CSV
+with open(csvpath) as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+# count # of months in dataset
+    row_count = sum(1 for row in csvreader)
+    print ("Total Months: ",row_count-1)
+
+ # Loop through looking for the video
+    for row in csvreader:
+        if row[0] == video:
+            print(row[0] + " is equal to " + row[1])
+
+            found = True
+
+            break
+
+     
+
+# simple count to see code is ending
+for n in range (2):
+    print(n)
+
+

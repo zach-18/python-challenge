@@ -1,0 +1,75 @@
+# Py Bank
+# I have the ave change done
+
+
+# Modules
+import os
+import csv
+
+# Set path for file
+csvpath = os.path.join("..", "Resources", "budget_data.csv")
+
+# Title
+print ("Financial Analysis")
+print ("-----------------------------")
+
+# Open the CSV
+with open(csvpath) as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+# count # of months in dataset
+# **Code found in Stack overflow**
+
+    row_count = sum(1 for row in csvreader)
+    print ("Total Months: ",row_count-1)
+
+
+# Net total amount of "profit/losses" over the entire period
+
+with open(csvpath) as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+    header = next(csvreader)
+    rows = [header] + [[row[0], int(row[1])] for row in csvreader if row]
+
+
+PL_Total = []    
+
+
+for dollars in rows:
+    if dollars[1] != "Profit/Losses":
+        PL_Total.append(dollars[1])
+
+x= sum(PL_Total)
+
+import locale
+locale.setlocale( locale.LC_ALL, 'English_United States.1252')
+print ("Total: ",locale.currency(x))
+
+# found currency code in stackoverflow
+
+
+# Code to find Average change
+
+PL_Diff = []    
+
+PL_Diff = [PL_Total[n]-PL_Total[n-1] for n in range(1,len(PL_Total))]
+
+# to calc the average change:
+PL_D_Total = sum(PL_Diff)
+# print (PL_D_Total)
+PL_D_Length = len(PL_Diff)
+# print (PL_D_Length)
+PL_D_Ave = (PL_D_Total) / (PL_D_Length)
+PL_D_Ave = format(PL_D_Ave, ".2f")
+import locale
+locale.setlocale( locale.LC_ALL, 'English_United States.1252')
+
+print ("Average Change: ", (PL_D_Ave))
+
+
+#********** GOOD ABOVE HERE **********
+# simple count to see code is ending
+for m in range (2):
+    print(m)
+
+

@@ -1,0 +1,59 @@
+# Py Poll
+# Struggling to count number of votes per candidate.
+# the bottom contains many attempts to build a list of votes per candidate
+
+# open csv and count votes
+
+# Modules
+import os
+import csv
+
+# Set path for file
+csvpath = os.path.join("..", "Resources", "election_data.csv")
+
+# Title
+print ("")
+print ("Election Results")
+print ("")
+print ("-----------------------------")
+
+
+# Open the CSV
+with open(csvpath) as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+    row_count = sum(1 for row in csvreader)
+    print ("Total Votes: ",row_count-1)
+print ("-----------------------------")
+
+# list of candidates:
+# Candidate_Khan = 0
+#**
+# with open(csvpath) as csvfile:
+#     csvreader = csv.reader(csvfile, delimiter=',')
+#     header = next(csvreader)
+#     rows = [header] + [[row[0], int(row[1]), [row[2]]]
+
+# for dollars in rows:
+#     if dollars[2] == ("Khan"):
+#         V_Votes.append(dollars[2])
+        
+# x= count(V_Votes)
+# print (x)
+#**
+
+
+
+# Candidate_Khan = 0
+# Candidate_Correy = []
+# Candidate_Li = []
+
+# with open(csvpath) as csvfile:
+#     csvreader = csv.reader(csvfile, delimiter=",")
+
+
+# csvreader.count("Khan")
+
+
+
+# print (Candidate_Khan)

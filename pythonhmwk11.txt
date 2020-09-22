@@ -1,0 +1,140 @@
+# Py Bank
+# I have calculated max and min profit change
+# i have created an output, but not in a table
+# what i have left is to:
+   # add month for max and min
+   
+
+
+# Modules
+import os
+import csv
+
+# Set path for file
+csvpath = os.path.join("..", "Resources", "budget_data.csv")
+
+# Title
+print ("Financial Analysis")
+print ("-----------------------------")
+
+# Open the CSV
+with open(csvpath) as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+# count # of months in dataset
+# **Code found in Stack overflow**
+
+    row_count = sum(1 for row in csvreader)
+    print ("Total Months: ",row_count-1)
+
+# Net total amount of "profit/losses" over the entire period
+
+with open(csvpath) as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+    header = next(csvreader)
+    rows = [header] + [[row[0], int(row[1])] for row in csvreader if row]
+
+
+PL_Total = []    
+
+
+for dollars in rows:
+    if dollars[1] != "Profit/Losses":
+        PL_Total.append(dollars[1])
+
+x= sum(PL_Total)
+
+import locale
+locale.setlocale( locale.LC_ALL, 'English_United States.1252')
+print ("Total: ",locale.currency(x))
+
+# found currency code in stackoverflow
+# Code to find Average change
+
+PL_Diff = []    
+
+PL_Diff = [PL_Total[n]-PL_Total[n-1] for n in range(1,len(PL_Total))]
+
+# to calc the average change:
+PL_D_Total = sum(PL_Diff)
+
+PL_D_Length = len(PL_Diff)
+
+PL_D_Ave = (PL_D_Total) / (PL_D_Length)
+PL_D_Ave = format(PL_D_Ave, ".2f")
+import locale
+locale.setlocale( locale.LC_ALL, 'English_United States.1252')
+
+print ("Average Change: ", (PL_D_Ave))
+
+# Calculate Greatest Increase (and Decrease) In Profits:
+# print (PL_Diff)
+
+
+
+
+
+PL_Max = max(PL_Diff)
+# print (PL_Max)
+
+PL_Min = min(PL_Diff)
+# print (PL_Min)
+
+import locale
+locale.setlocale( locale.LC_ALL, 'English_United States.1252')
+
+print ("Greatest Increase in Profits: ",locale.currency(PL_Max))
+print ("Greatest Decrease in Profits: ",locale.currency(PL_Min))
+#********** GOOD ABOVE HERE **********
+
+# with open(csvpath) as csvfile:
+#     csvreader = csv.reader(csvfile, delimiter=',')
+#     header = next(csvreader)
+#     dates = [header] + [[row[0]] for row in csvreader if row]
+
+# print (dates)
+
+# combo1 = dict{dates, PL_Diff}
+
+# print (PL_Total)
+# print (PL_Diff)
+# print (rows)
+print ("**")
+# print (combo1)
+
+# for dollars in rows:
+#     if dollars[1] != "Profit/Losses":
+#         PL_Total.append(dollars[1])
+
+# x= sum(PL_Total)
+
+# PL_Diff = [PL_Total[n]-PL_Total[n-1] for n in range(1,len(PL_Total))]
+
+
+# print (rows)
+
+# simple count to see code is ending
+for m in range (4):
+    print(m)
+
+# writing csv file:
+# cleaned_csv = zip(row_count-1)
+
+
+output_path = os.path.join("..", "Resources", "new.csv")
+with open(output_path, 'w') as csvfile:
+    csvwriter = csv.writer(csvfile, delimiter=',')
+    csvwriter.writerow(["Total Months"])
+    csvwriter.writerow([row_count-1])
+
+    csvwriter.writerow(["Total"])
+    csvwriter.writerow([x])
+    
+    csvwriter.writerow(["Average Change"])
+    csvwriter.writerow([PL_D_Ave])
+
+    csvwriter.writerow(["Greatest Increase in Profits"])
+    csvwriter.writerow([PL_Max])
+
+    csvwriter.writerow(["Greatest Decrease in Profits"])
+    csvwriter.writerow([PL_Min])

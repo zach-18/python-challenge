@@ -1,0 +1,66 @@
+# broke csv in integer values!
+#  Have total months done
+
+# Modules
+import os
+import csv
+
+# Prompt user for video lookup
+#video = input("What month are you looking for? ")
+
+# Set path for file
+csvpath = os.path.join("..", "Resources", "budget_data.csv")
+
+# Title
+print ("Financial Analysis")
+print ("-----------------------------")
+
+# Open the CSV
+with open(csvpath) as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+# count # of months in dataset
+# **Code found in Stack overflow**
+
+    row_count = sum(1 for row in csvreader)
+    print ("Total Months: ",row_count-1)
+
+
+#********** GOOD ABOVE HERE **********
+
+# Net total amount of "profit/losses" over the entire period
+
+with open(csvpath) as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+    header = next(csvreader)
+    rows = [header] + [[row[0], int(row[1])] for row in csvreader if row]
+
+for row in rows:
+    print(row)
+
+    # PL_Total = []    
+
+
+    # for dollars in csvreader:
+    #     if dollars[1] != 0:
+    #         PL_Total.append(dollars[1])
+
+
+    # # totpl = sum (PL_Total)
+
+    # print(PL_Total)
+    # # print (totpl)
+
+    
+ 
+
+    
+
+
+
+
+# simple count to see code is ending
+for n in range (2):
+    print(n)
+
+

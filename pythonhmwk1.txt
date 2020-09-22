@@ -1,0 +1,23 @@
+# test
+print ("Test")
+# import os
+# import csv
+
+# video=input("what date do you want?")
+
+# csvpath = os.path.join("..", "Resources", "budget_data.csv")
+
+# with open(csvpath) as csvfile:
+#     csvreader = csv.reader(csvfile, delimiter=",")
+
+# for row in csvreader:
+#     if row[0] == video:
+#         print(row[0] + " is this " + row[1])
+#         found = True
+#         break
+
+for n in range (5):
+    print(n)
+
+video = input("enter a value")
+print (video)

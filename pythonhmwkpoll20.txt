@@ -1,0 +1,16 @@
+# Py Poll
+# open csv and count votes
+
+# Modules
+import os
+import csv
+
+# Set path for file
+csvpath = os.path.join("..", "Resources", "election_data.csv")
+
+# Open the CSV
+with open(csvpath) as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+    row_count = sum(1 for row in csvreader)
+    print ("Total count: ",row_count-1)
